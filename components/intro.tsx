@@ -31,7 +31,7 @@ export default function Intro() {
             }}
           >
             <Image
-              src="https://images.unsplash.com/photo-1497316730643-415fac54a2af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80"
+              src="https://images.unsplash.com/photo-1534723328310-e82dad3ee43f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzE0fHxwcm9ncmFtYWNpJUMzJUIzbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
               alt="portrait"
               width="192"
               height="192"
@@ -62,10 +62,10 @@ export default function Intro() {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <span className="font-bold">Hello, I'm Irwing.</span> I'm a{" "}
+        <span className="font-bold">Hello, I'm Irwing</span> I'm a{" "}
         <span className="font-bold">Junior Developer</span> with{" "}
         <span className="font-bold">2 years</span> of experience. I enjoy
-        building <span className="italic">sites & apps</span>. My focus is{" "}
+        building <span className="italic">sites & apps</span>, my focus is{" "}
         <span className="underline">React (Next.js)</span>.
       </motion.h1>
 

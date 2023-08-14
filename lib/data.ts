@@ -65,7 +65,7 @@ export const projectsData = [
     title: "3D Website",
     description:
       "My personal project was implementing my front-end knowledge and implementing some 3D modes.",
-    tags: ["React", "Next.js", "Vite.js", "Tailwind", "Blender"],
+    tags: ["React", "Next.js", "Vite.js", "Blender"],
     imageUrl: corpcommentImg,
   },
   {
@@ -76,10 +76,10 @@ export const projectsData = [
     imageUrl: rmtdevImg,
   },
   {
-    title: "Word Analytics",
+    title: "Music Controller",
     description:
-      "A public web app for quick analytics on text. It shows word count, character count and social media post limits.",
-    tags: ["React", "Next.js", "Tailwind", "MongoDB"],
+      "Web server collaborative music playing system. It is a way for group people to kind of contro the music.",
+    tags: ["Javascript", "React", "Python", "MongoDB"],
     imageUrl: wordanalyticsImg,
   },
 ] as const;
