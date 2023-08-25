@@ -93,6 +93,7 @@ export const skillsData = [
   "Next.js",
   "Node.js",
   "Git",
+  "SQL",
   "Tailwind",
   "MongoDB",
   "Express",
