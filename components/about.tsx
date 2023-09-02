@@ -19,12 +19,12 @@ export default function About() {
     >
       <SectionHeading>About me</SectionHeading>
       <p className="mb-3">
-        I'm about to finish my degree in{" "}
-        <span className="font-medium">Computer Science Engineering</span> and
+        I am a  {" "}
+        <span className="font-medium">Computer Science Engineering</span> student.
         before entering the university I learned how to program in {" "}
         <span className="font-medium">Javascript</span>.{" "}I enrolled in a
         <span className="italic">programming course and learned full web development</span>
-        . I have a flexible schedule that allows me to find <span className="underline">Full Time Work</span>
+        . I have a flexible schedule that allows me to look <span className="underline">Full Time Work</span>
         . My favorite part of programming is the feeling of finally finding a solution to a problem.
         My main stack is{" "}
         <span className="font-medium">
