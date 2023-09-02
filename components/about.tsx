@@ -34,8 +34,7 @@ export default function About() {
         learn new technologies. I am currently looking for a{" "}
         <span className="font-medium">Full-Time</span>position as a software
         developer.
-      </p>
-      <p>When I'm not coding
+        When I'm not coding
         <span className="italic">, I enjoy playing </span>
         videogames, watching movies and playing with my dog. I also enjoy{" "}
         <span className="font-medium">take pictures</span>.
