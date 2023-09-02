@@ -46,7 +46,7 @@ export const experiencesData = [
     title: "Front-End Developer",
     location: "Puebla, Pue",
     description:
-      "I worked as a front-end developer for 2 years in 1 job and 1 year in another job.",
+      "I worked as a front-end developer for 1.4 years in 1 job and 6 months in another job.",
     icon: React.createElement(CgWorkAlt),
     date: "2021 - 2023",
   },
