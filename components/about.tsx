@@ -19,26 +19,24 @@ export default function About() {
     >
       <SectionHeading>About me</SectionHeading>
       <p className="mb-3">
-        I am a  {" "}
-        <span className="font-medium">Computer Science Engineering</span> student.
-        before entering the university I learned how to program in {" "}
-        <span className="font-medium">Javascript</span>.{" "}I enrolled in a
-        <span className="italic">programming course and learned full web development</span>
-        . I have a flexible schedule that allows me to look <span className="underline">Full Time Work</span>
-        . My favorite part of programming is the feeling of finally finding a solution to a problem.
-        My main stack is{" "}
-        <span className="font-medium">
-          React, Next.js, Node.js and MongoDB
-        </span>.
-        I am also familiar with TypeScript. I am always looking to
-        learn new technologies. I am currently looking for a{" "}
-        <span className="font-medium">Full-Time</span>position as a software
-        developer.
-        When I'm not coding
-        <span className="italic">, I enjoy playing </span>
-        videogames, watching movies and playing with my dog. I also enjoy{" "}
-        <span className="font-medium">take pictures</span>.
+        I'm a creative{" "}
+        <span className="font-medium">web developer based in Mexico</span>.
+        Currently focused on being a  {" "}
+        <span className="font-medium">full-stack </span>developer.{" "}My beginnings in web development
+        started as a frontend developer where I learned <span className="underline">React, Next.js and Typescript</span>.
+        Later I got involved in web applications where I worked with
+        <span className="underline">Node.js, MongoDB, SQL and sometimes PHP</span>.
+        My passion for creating drives me to engage in immersive and captivating digital experiences that leave
+        a lasting impression and use.{" "}
+        <span className="italic">In addition to my passion for technology</span>,
+        I strive for collaboration and effective communication. I believe in the importance
+        of working as a team to achieve exceptional results. I'm excited for the {" "}
+        <span className="font-medium">opportunity
+          to contribute to innovative projects and continue to grow as a professional in this
+          exciting world of web development.</span>
+        <span className="italic">Thanks for visiting my portfolio!</span> <br />
+        If you have any questions or if there's anything I can help you with, don't hesitate to get in touch!
       </p>
-    </motion.section>
+    </motion.section >
   );
 }
