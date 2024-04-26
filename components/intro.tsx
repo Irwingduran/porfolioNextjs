@@ -31,7 +31,7 @@ export default function Intro() {
             }}
           >
             <Image
-              src="https://images.unsplash.com/photo-1534694895098-4b226f923532?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
+              src="https://media.licdn.com/dms/image/D5603AQH7KMB4LwmCwA/profile-displayphoto-shrink_800_800/0/1702257953976?e=1719446400&v=beta&t=Lohs4JnCP941tDUQvIQnzXyAbQHfYx6-Pfschr4XpJA"
               alt="portrait"
               width="192"
               height="192"
@@ -62,11 +62,11 @@ export default function Intro() {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <span className="font-bold">Hello, I'm Irwing</span> a{" "}
-        <span className="font-bold">Junior Developer</span> with{" "}
-        <span className="font-bold">2 years</span> of experience. I enjoy
-        building <span className="italic">sites & apps</span>, my focus is{" "}
-        <span className="underline">React (Next.js)</span>.
+        <span className="font-bold">Hello there!</span> I'm Irwing Duran a{" "}
+        <span className="font-bold">Web Developer</span> with{" "}
+        <span className="font-bold">3 years</span> of experience. I thrive on crafting
+        dynamic and user-friendly <span className="italic"> web applications</span> that push the boundaries of{" "}
+        <span className="font-bold">modern technology.</span>
       </motion.h1>
 
       <motion.div
