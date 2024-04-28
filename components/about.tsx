@@ -20,22 +20,20 @@ export default function About() {
       <SectionHeading>About me</SectionHeading>
       <p className="mb-3">
         I'm a creative{" "}
-        <span className="font-medium">web developer based in Mexico</span>.
-        Currently focused on being a  {" "}
-        <span className="font-medium">full-stack </span>developer.{" "}My beginnings in web development
-        started as a frontend developer where I learned <span className="underline">React, Next.js and Typescript</span>.
-        Later I got involved in web applications where I worked with
-        <span className="underline">Node.js, MongoDB, SQL and sometimes PHP</span>.
-        My passion for creating drives me to engage in immersive and captivating digital experiences that leave
-        a lasting impression and use.{" "}
-        <span className="italic">In addition to my passion for technology</span>,
-        I strive for collaboration and effective communication. I believe in the importance
-        of working as a team to achieve exceptional results. I'm excited for the {" "}
+        <span className="font-medium">Web Developer</span> from <span className="font-medium">Mexico City</span>.
+        I started as a <span className="font-medium">Frontend</span> developer where I learned <span className="font-medium">Javascript: </span>
+        <span className="underline">React and Typescript</span>. Later I got involved in web applications where I worked with <span className="font-medium">Backend</span> technologies:
+        <span className="underline"> PHP, Express.js and Django</span>.
+        Currently getting certified as an  {" "} <span className="font-medium">Oracle Backend </span>for my{" "}
+        <span className="font-medium">Full Stack </span> training.
+        I now collaborate with {" "}
+        <span className="italic">agencies, consulting firms, projects and people from all over the world</span>.
+        I believe in the importance of working as a team to achieve exceptional results. I'm excited for the {" "}
         <span className="font-medium">opportunity
           to contribute to innovative projects and continue to grow as a professional in this
-          exciting world of web development.</span>
-        <span className="italic">Thanks for visiting my portfolio!</span> <br />
-        If you have any questions or if there's anything I can help you with, don't hesitate to get in touch!
+          exciting world of web development. </span>
+        If you have any questions or if there's anything I can help you with, don't hesitate to get in touch. <br />
+        <span className="italic">Thanks for visiting my portfolio!</span>
       </p>
     </motion.section >
   );
