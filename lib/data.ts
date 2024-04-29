@@ -65,8 +65,7 @@ export const experiencesData = [
     location: "Mexico City, Mx",
     description:
       "My team and I managed to create sites and apps for companies all over the country, I was in charge of the front-end.",
-    icon: React.crMi equipo y yo logramos crear sitios y apps para compañías de todo el país, yo me encargaba del front-end.",
-    eateElement(CgWorkAlt),
+    icon: React.createElement(CgWorkAlt),
     date: "2022 - 2023",
   },
   {
@@ -132,6 +131,7 @@ export const skillsData = [
   "JavaScript",
   "TypeScript",
   "React",
+  "Next.js",
   "Node.js",
   "Express.js",
   "Git",
