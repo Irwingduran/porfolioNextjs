@@ -64,9 +64,9 @@ export default function Intro() {
       >
         <span className="font-bold">Hello there!</span> I'm Irwing Duran a{" "}
         <span className="font-bold">Web Developer</span> with{" "}
-        <span className="font-bold">3 years</span> of experience. I thrive on crafting
-        dynamic and user-friendly <span className="italic"> web applications</span> that push the boundaries of{" "}
-        <span className="font-bold">modern technology.</span>
+        <span className="font-bold">3 years</span> of experience. I enjoy building
+        <span className="italic"> sities & apps.</span> My focus is {" "}
+        <span className="font-bold">React and Node.js</span>
       </motion.h1>
 
       <motion.div

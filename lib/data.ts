@@ -3,8 +3,10 @@ import { CgWorkAlt } from "react-icons/cg";
 import { FaReact } from "react-icons/fa";
 import { LuGraduationCap } from "react-icons/lu";
 import corpcommentImg from "@/public/corpcomment.png";
-import rmtdevImg from "@/public/rmtdev.png";
-import wordanalyticsImg from "@/public/wordanalytics.png";
+import findoctor from "@/public/findDoctor.jpg";
+import prototype from "@/public/prototype.jpg"
+import decredit from "@/public/decredt.jpg";
+import governance from "@/public/governance.jpg";
 
 export const links = [
   {
@@ -36,52 +38,91 @@ export const links = [
 export const experiencesData = [
   {
     title: "Computer Science Engineering",
-    location: "Puebla, Pue",
+    location: "Puebla, Mx",
     description:
-      "I am not far from finishing college, so I started to show my skills before the degree.",
+      "I have a background in computer science engineering.",
     icon: React.createElement(LuGraduationCap),
-    date: "2019",
+    date: "2020",
   },
   {
-    title: "Front-End Developer",
-    location: "Puebla, Pue",
+    title: "Sitios y Web | Web Developer",
+    location: "Puebla, Mx",
     description:
-      "I worked as a front-end developer for 1.4 years in 1 job and 6 months in another job.",
+      "I started as a front-end but this was my first approach to the back-end.",
     icon: React.createElement(CgWorkAlt),
-    date: "2021 - 2023",
+    date: "2021 - 2022",
+  },
+  {
+    title: "Formula 1 | Product Manager",
+    location: "Puebla, Mx",
+    description:
+      "I was part of the team that managed the volunteer system at the GP Mexico City.",
+    icon: React.createElement(CgWorkAlt),
+    date: "2022",
+  },
+  {
+    title: "BNN Mexico | Front-end",
+    location: "Mexico City, Mx",
+    description:
+      "Mi equipo y yo logramos crear sitios y apps para compañías de todo el país, yo me encargaba del front-end.",
+    icon: React.createElement(CgWorkAlt),
+    date: "2022 - 2023",
   },
   {
     title: "Freelance Developer",
     location: "Mexico City, Mx",
     description:
-      "I'm now a javascript developer working as a freelancer. My stack includes React, Next.js, TypeScript, Tailwind and MongoDB. I'm open to full-time opportunities.",
+      "I currently collaborate in projects both in interfaces and web2 and web3 applications.",
     icon: React.createElement(FaReact),
-    date: "2023 - present",
+    date: "2024",
+  },
+  {
+    title: "Oracle Backend Certificate",
+    location: "Remote",
+    description:
+      "Completing my full-stack training.",
+    icon: React.createElement(LuGraduationCap),
+    date: "2024",
   },
 ] as const;
 
 export const projectsData = [
   {
-    title: "3D Website",
+    title: "3D Personal Website",
     description:
-      "My personal project was implementing my front-end knowledge and implementing some 3D modes.",
+      "Personal project was implementing my front-end knowledge and implementing some 3D models.",
     tags: ["React", "Next.js", "Vite.js", "Blender"],
     imageUrl: corpcommentImg,
   },
   {
-    title: "rmtDev",
+    title: "Findoctor",
     description:
-      "Job board for remote developer jobs. I was the front-end developer. It has features like filtering, sorting and pagination.",
-    tags: ["React", "TypeScript", "Next.js", "Tailwind"],
-    imageUrl: rmtdevImg,
+      "It is a platform where doctors in Mexico can show the quality of their services.",
+    tags: ["Javascript", "Express.js", "SQL"],
+    imageUrl: findoctor,
   },
   {
-    title: "Music Controller",
+    title: "Freelance work (Prototype)",
     description:
-      "Web server collaborative music playing system. It is a way for group people to kind of contro the music.",
-    tags: ["Javascript", "React", "Python", "MongoDB"],
-    imageUrl: wordanalyticsImg,
+      "Freelance developer working with agencies, consulting firms and business owners.",
+    tags: ["Javascript", "Node.js", "SQL", "NoSQL", "PHP", "Django"],
+    imageUrl: prototype,
   },
+  {
+    title: "Neighborhood Governance (In Development)",
+    description:
+      "Constructive research to support the emergence of peer-governed & circulas emonomy-based cities.",
+    tags: ["React", "Gitcoin Passport", "Smart Contracts", "NEAR B.O.S"],
+    imageUrl: governance,
+  },
+  {
+    title: "deCreditScore (In Development)",
+    description:
+      "A constructive research that is testing an effective way to convert trust IRL (social data) into useful and measurable data in the chain for credit scoring.",
+    tags: ["React", "Gitcoin", "Arbitrum", "Smart Contracts", "IPFS"],
+    imageUrl: decredit,
+  },
+
 ] as const;
 
 export const skillsData = [
@@ -90,13 +131,15 @@ export const skillsData = [
   "JavaScript",
   "TypeScript",
   "React",
-  "Next.js",
   "Node.js",
+  "Express.js",
   "Git",
+  "PHP",
   "SQL",
+  "Blockchain",
   "Tailwind",
   "MongoDB",
-  "Express",
+  "Prisma",
   "Python",
   "Django",
   "Framer Motion",
