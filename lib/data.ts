@@ -64,7 +64,7 @@ export const experiencesData = [
     title: "BNN Mexico | Front-end",
     location: "Mexico City, Mx",
     description:
-      "My team and I managed to create sites and apps for companies all over the country, I was in charge of the front-end.",
+      "Mi equipo y yo logramos crear sitios y apps para compañías de todo el país, yo me encargaba del front-end.",
     icon: React.createElement(CgWorkAlt),
     date: "2022 - 2023",
   },
@@ -93,6 +93,7 @@ export const projectsData = [
       "Personal project was implementing my front-end knowledge and implementing some 3D models.",
     tags: ["React", "Next.js", "Vite.js", "Blender"],
     imageUrl: corpcommentImg,
+    URL: "https://3d-website-gules.vercel.app/",
   },
   {
     title: "Findoctor",
@@ -100,13 +101,15 @@ export const projectsData = [
       "It is a platform where doctors in Mexico can show the quality of their services.",
     tags: ["Javascript", "Express.js", "SQL"],
     imageUrl: findoctor,
+    URL: "https://www.findoctor.com",
   },
   {
     title: "Freelance work (Prototype)",
     description:
-      "Freelance developer working with agencies, consulting firms and business owners.",
+      "Freelance developer working with agencies, consulting firms and business owners. (Is an example of a prototype).",
     tags: ["Javascript", "Node.js", "SQL", "NoSQL", "PHP", "Django"],
     imageUrl: prototype,
+    URL: "https://template-test-one-henna.vercel.app/",
   },
   {
     title: "Neighborhood Governance (In Development)",
@@ -114,6 +117,7 @@ export const projectsData = [
       "Constructive research to support the emergence of peer-governed & circulas emonomy-based cities.",
     tags: ["React", "Gitcoin Passport", "Smart Contracts", "NEAR B.O.S"],
     imageUrl: governance,
+    URL: "https://near.org/near/widget/ComponentDetailsPage?src=irwing-dur.near/widget/homes",
   },
   {
     title: "deCreditScore (In Development)",
@@ -121,6 +125,7 @@ export const projectsData = [
       "A constructive research that is testing an effective way to convert trust IRL (social data) into useful and measurable data in the chain for credit scoring.",
     tags: ["React", "Gitcoin", "Arbitrum", "Smart Contracts", "IPFS"],
     imageUrl: decredit,
+    URL: "https://www.decreditscore.xyz",
   },
 
 ] as const;
@@ -131,7 +136,6 @@ export const skillsData = [
   "JavaScript",
   "TypeScript",
   "React",
-  "Next.js",
   "Node.js",
   "Express.js",
   "Git",
