@@ -29,10 +29,6 @@ export const links = [
     name: "Experience",
     hash: "#experience",
   },
-  {
-    name: "Contact",
-    hash: "#contact",
-  },
 ] as const;
 
 export const experiencesData = [
@@ -61,18 +57,18 @@ export const experiencesData = [
     date: "2022",
   },
   {
-    title: "BNN Mexico | Front-end",
+    title: "BNN Mexico | Front-End",
     location: "Mexico City, Mx",
     description:
-      "Mi equipo y yo logramos crear sitios y apps para compañías de todo el país, yo me encargaba del front-end.",
+      "My team and me, we used to work for sites of big companies in the country.",
     icon: React.createElement(CgWorkAlt),
     date: "2022 - 2023",
   },
   {
-    title: "Freelance Developer",
+    title: "Freelance Dev | Full-Stack",
     location: "Mexico City, Mx",
     description:
-      "I currently collaborate in projects both in interfaces and web2 and web3 applications.",
+      "Currently I collaborate in web2 apps and web3 (DApps).",
     icon: React.createElement(FaReact),
     date: "2024",
   },
@@ -91,23 +87,23 @@ export const projectsData = [
     title: "3D Personal Website",
     description:
       "Personal project was implementing my front-end knowledge and implementing some 3D models.",
-    tags: ["React", "Next.js", "Vite.js", "Blender"],
+    tags: ["React", "Three.js", "Vite.js", "Taildwind", "Blender"],
     imageUrl: corpcommentImg,
     URL: "https://3d-website-gules.vercel.app/",
   },
   {
     title: "Findoctor",
     description:
-      "It is a platform where doctors in Mexico can show the quality of their services.",
-    tags: ["Javascript", "Express.js", "SQL"],
+      "It is a platform where doctors in Mexico and Guatemala can show the quality of their services.",
+    tags: ["React", "Express.js", "SQL"],
     imageUrl: findoctor,
     URL: "https://www.findoctor.com",
   },
   {
     title: "Freelance work (Prototype)",
     description:
-      "Freelance developer working with agencies, consulting firms and business owners. (Is an example of a prototype).",
-    tags: ["Javascript", "Node.js", "SQL", "NoSQL", "PHP", "Django"],
+      "Freelance developer working with agencies, consulting firms and particulars. (Is an example of one of prototypes).",
+    tags: ["Javascript", "Express.js", "Django", "PHP", "SQL"],
     imageUrl: prototype,
     URL: "https://template-test-one-henna.vercel.app/",
   },
@@ -115,15 +111,15 @@ export const projectsData = [
     title: "Neighborhood Governance (In Development)",
     description:
       "Constructive research to support the emergence of peer-governed & circulas emonomy-based cities.",
-    tags: ["React", "Gitcoin Passport", "Smart Contracts", "NEAR B.O.S"],
+    tags: ["React", "NEAR B.O.S", "Sandbox", "Gitcoin Passport API"],
     imageUrl: governance,
-    URL: "https://near.org/near/widget/ComponentDetailsPage?src=irwing-dur.near/widget/homes",
+    URL: "https://near.org/near/widget/ComponentDetailsPage?src=irwing-dur.near/widget/home",
   },
   {
     title: "deCreditScore (In Development)",
     description:
       "A constructive research that is testing an effective way to convert trust IRL (social data) into useful and measurable data in the chain for credit scoring.",
-    tags: ["React", "Gitcoin", "Arbitrum", "Smart Contracts", "IPFS"],
+    tags: ["Next.js", "Typescript", "Taildwind", "E.A.S", "Solidity"],
     imageUrl: decredit,
     URL: "https://www.decreditscore.xyz",
   },
@@ -134,18 +130,20 @@ export const skillsData = [
   "HTML",
   "CSS",
   "JavaScript",
+  "PHP",
   "TypeScript",
   "React",
+  "Next.js",
+  "Tailwind",
   "Node.js",
   "Express.js",
-  "Git",
-  "PHP",
-  "SQL",
-  "Blockchain",
-  "Tailwind",
-  "MongoDB",
-  "Prisma",
   "Python",
   "Django",
+  "Blockchain",
+  "Solidity",
+  "Ethereum Attestation Service (E.A.S.)",
+  "Git",
+  "SQL",
+  "Prisma",
   "Framer Motion",
 ] as const;

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { BsArrowRight, BsLinkedin } from "react-icons/bs";
 import { HiDownload } from "react-icons/hi";
 import { FaGithubSquare } from "react-icons/fa";
+import { MdOutlineEmail } from "react-icons/md";
 import { useSectionInView } from "@/lib/hooks";
 import { useActiveSectionContext } from "@/context/active-section-context";
 
@@ -31,7 +32,7 @@ export default function Intro() {
             }}
           >
             <Image
-              src="https://media.licdn.com/dms/image/D5603AQH7KMB4LwmCwA/profile-displayphoto-shrink_800_800/0/1702257953976?e=1719446400&v=beta&t=Lohs4JnCP941tDUQvIQnzXyAbQHfYx6-Pfschr4XpJA"
+              src="https://media.licdn.com/dms/image/D5603AQH7KMB4LwmCwA/profile-displayphoto-shrink_800_800/0/1702257953976?e=1727913600&v=beta&t=FZeUphp-I6l3eihOXxAIRQbdxQACjx1ZMTlW2n-Qq7Q"
               alt="portrait"
               width="192"
               height="192"
@@ -62,9 +63,9 @@ export default function Intro() {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <span className="font-bold">Hello there!</span> I'm Irwing Duran a{" "}
+        <span className="font-bold">Hello world!</span> I'm Irwing Duran a{" "}
         <span className="font-bold">Web Developer</span> with{" "}
-        <span className="font-bold">3 years</span> of experience. I enjoy building
+        <span className="font-bold">3 years</span> of experience. <br /> I enjoy building
         <span className="italic"> sities & apps.</span> My focus is {" "}
         <span className="font-bold">React and Node.js</span>
       </motion.h1>
@@ -77,17 +78,7 @@ export default function Intro() {
           delay: 0.1,
         }}
       >
-        <Link
-          href="#contact"
-          className="group bg-gray-900 text-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 hover:bg-gray-950 active:scale-105 transition"
-          onClick={() => {
-            setActiveSection("Contact");
-            setTimeOfLastClick(Date.now());
-          }}
-        >
-          Contact me here{" "}
-          <BsArrowRight className="opacity-70 group-hover:translate-x-1 transition" />
-        </Link>
+      
 
         <a
           className="group bg-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10"
@@ -112,6 +103,14 @@ export default function Intro() {
           target="_blank"
         >
           <FaGithubSquare />
+        </a>
+
+        <a
+          className="bg-white p-4 text-gray-700 flex items-center gap-2 text-[1.35rem] rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
+          href="mailto:contacto@irwingduran.com"
+          target="_blank"
+        >
+          <MdOutlineEmail />
         </a>
       </motion.div>
     </section>

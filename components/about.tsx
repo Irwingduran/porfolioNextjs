@@ -19,22 +19,10 @@ export default function About() {
     >
       <SectionHeading>About me</SectionHeading>
       <p className="mb-3">
-        I am a creative{" "}
-        <span className="font-medium">Web Developer</span> from <span className="font-medium">Mexico City</span>.
-        I started as a <span className="font-medium">Frontend</span> developer where I learned <span className="font-medium">Javascript: </span>
-        <span className="underline">React and Typescript</span>. Later I got involved in web applications where I worked with <span className="font-medium">Backend</span> technologies:
-        <span className="underline"> PHP, Express.js and Django</span>.
-        Currently getting certified as an  {" "} <span className="font-medium">Oracle Backend </span>for my{" "}
-        <span className="font-medium">Full Stack </span> training.
-        I now collaborate with {" "}
-        <span className="italic">agencies, consulting firms, projects, people from all over the world and blockchain projects</span>.
-        I believe in the importance of working as a team to achieve exceptional results. I'm excited for the {" "}
-        <span className="font-medium">opportunity
-          to contribute to innovative projects and continue to grow as a professional in this
-          exciting world of web development.  </span> I am currently looking for a for a
-        <span className="font-medium"> full-time position</span> as a software developer. <br />
-        <span className="italic">Thanks for visiting my portfolio!</span>
-      </p>
+  I began my career as a <span className="font-medium">Frontend Developer</span>, mastering <span className="font-medium">JavaScript, React, and TypeScript</span>. My journey then led me to explore <span className="font-medium">Backend</span> technologies, where I gained experience with <span className="underline">PHP, Express.js, and Django</span>. Currently, I am getting certified as an <span className="font-medium">Oracle Java Backend Developer</span>, further enhancing my <span className="font-medium">Full-Stack</span> skills. <br />
+  Over the years, I've had the privilege of collaborating with <span className="italic">agencies, consulting firms, and individuals</span> on diverse projects, including those in the <span className="italic">blockchain space</span>. I believe in the power of teamwork to achieve exceptional results and am passionate about contributing to innovative projects.
+  I am actively seeking a <span className="font-medium">full-time position</span> as a <span className="font-medium">Software Developer</span>, eager to bring my expertise to new challenges. <br /> Thank you for visiting my portfolio!
+</p>
     </motion.section >
   );
 }
