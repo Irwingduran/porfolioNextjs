@@ -17,10 +17,12 @@ import {
   SkipBack,
   Code,
   Cpu,
-  Database,
+  Calendar,
   Lock,
   Sparkles,
   Terminal,
+  ShoppingBag,
+  BarChart,
 } from "lucide-react"
 
 export default function InteractiveDevPortfolio() {
@@ -332,37 +334,58 @@ function WelcomeChapter({ chapter }: { chapter: any }) {
 
 function ProjectsChapter({ chapter }: { chapter: any }) {
   const projects = [
-    {
-      title: "Sistema de Gestión Empresarial",
-      description: "Plataforma integral para gestión de clientes, inventario y facturación",
-      tech: ["React", "Node.js", "MongoDB", "GraphQL"],
-      status: "Producción",
-      year: "2023",
-      github: "#",
-      demo: "#",
-      icon: <Database className="w-5 h-5 text-blue-400" />
-    },
-    {
-      title: "Aplicación de Finanzas Personales",
-      description: "Solución para seguimiento de gastos e inversiones con análisis predictivo",
-      tech: ["Next.js", "TypeScript", "Firebase", "Tailwind"],
-      status: "Activo",
-      year: "2024",
-      github: "#",
-      demo: "#",
-      icon: <Lock className="w-5 h-5 text-green-400" />
-    },
-    {
-      title: "Marketplace de NFTs",
-      description: "Plataforma para creación y comercio de tokens digitales coleccionables",
-      tech: ["Solidity", "Ethereum", "IPFS", "Web3.js"],
-      status: "Prototipo",
-      year: "2023",
-      github: "#",
-      demo: "#",
-      icon: <Sparkles className="w-5 h-5 text-purple-400" />
-    },
-  ]
+  {
+    title: "Plataforma de Voto Digital en Blockchain",
+    description: "Sistema descentralizado para elecciones digitales seguras, usando contratos inteligentes y verificaciones públicas.",
+    tech: ["Solidity", "Ethereum", "React", "Node.js"],
+    status: "Prototipo funcional",
+    year: "2022",
+    github: "#",
+    demo: "#",
+    icon: <Lock className="w-5 h-5 text-purple-400" />
+  },
+  {
+    title: "Sistema de Reservas Médicas",
+    description: "Plataforma web para gestionar citas y disponibilidad de doctores, con integración de APIs de calendario.",
+    tech: ["Next.js", "TypeScript", "TailwindCSS", "MongoDB"],
+    status: "Producción",
+    year: "2023",
+    github: "#",
+    demo: "#",
+    icon: <Calendar className="w-5 h-5 text-green-400" />
+  },
+  {
+    title: "Eco-Marketplace Inteligente",
+    description: "Marketplace sostenible con integración de pagos digitales y analíticas en tiempo real para vendedores.",
+    tech: ["React", "Node.js", "PostgreSQL", "Stripe API"],
+    status: "Activo",
+    year: "2023",
+    github: "#",
+    demo: "#",
+    icon: <ShoppingBag className="w-5 h-5 text-blue-400" />
+  },
+  {
+    title: "Aplicación Web3 de Microcréditos",
+    description: "DApp que permite a usuarios solicitar y otorgar microcréditos con bajas tasas de interés usando Web3.",
+    tech: ["Solidity", "Next.js", "Ethers.js", "IPFS"],
+    status: "Prototipo",
+    year: "2024",
+    github: "#",
+    demo: "#",
+    icon: <Sparkles className="w-5 h-5 text-yellow-400" />
+  },
+  {
+    title: "Sistema de Reportes Gantt",
+    description: "Aplicación para generar reportes de avance quincenales en Excel a partir de diagramas de Gantt.",
+    tech: ["Python", "Pandas", "OpenPyXL", "React"],
+    status: "Uso interno",
+    year: "2024",
+    github: "#",
+    demo: "#",
+    icon: <BarChart className="w-5 h-5 text-red-400" />
+  }
+]
+
 
   return (
     <div className="h-full flex flex-col items-center pt-28 px-4 py-8 overflow-y-auto">
