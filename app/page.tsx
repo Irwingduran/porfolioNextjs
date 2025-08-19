@@ -23,6 +23,22 @@ import {
   Terminal,
   ShoppingBag,
   BarChart,
+  Trophy,
+  Zap,
+  Coffee,
+  Keyboard,
+  Puzzle,
+  Shield,
+  Award,
+  GitBranch,
+  GitCommit,
+  GitPullRequest,
+  Codesandbox,
+  Smile,
+  Frown,
+  Meh,
+  Laugh,
+  Asterisk,
 } from "lucide-react"
 
 export default function InteractiveDevPortfolio() {
@@ -32,14 +48,33 @@ export default function InteractiveDevPortfolio() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; vx: number; vy: number; color: string }>>([])
   const [isMobile, setIsMobile] = useState(false)
+  const [unlockedAchievements, setUnlockedAchievements] = useState<string[]>([])
+  const [terminalMode, setTerminalMode] = useState(false)
+  const [avatarExpression, setAvatarExpression] = useState('default')
   const containerRef = useRef<HTMLDivElement>(null)
   const cursorTrailRef = useRef<HTMLDivElement[]>([])
+  const [viewedProjects, setViewedProjects] = useState(0)
+  const [showAchievement, setShowAchievement] = useState<{name: string, icon: JSX.Element} | null>(null)
+  const [timeOfDay, setTimeOfDay] = useState<'morning'|'day'|'night'>('day')
+
+  // Configuración del tema según hora del día
+  useEffect(() => {
+    const hour = new Date().getHours()
+    if (hour >= 6 && hour < 9) {
+      setTimeOfDay('morning')
+    } else if (hour >= 9 && hour < 18) {
+      setTimeOfDay('day')
+    } else {
+      setTimeOfDay('night')
+    }
+  }, [])
 
   const techColors = [
     "text-blue-400", "text-purple-400", "text-green-400", 
     "text-yellow-400", "text-red-400", "text-cyan-400", "text-pink-400"
   ]
 
+  // Efectos para dispositivos móviles y partículas
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768)
     checkMobile()
@@ -98,6 +133,52 @@ export default function InteractiveDevPortfolio() {
     const interval = setInterval(animateParticles, 16)
     return () => clearInterval(interval)
   }, [])
+
+  // Sistema de logros
+  const achievements = [
+    { id: 'welcome', name: 'Bienvenida', icon: <Coffee className="w-4 h-4" />, condition: () => currentChapter === 0 },
+    { id: 'projects', name: 'Explorador', icon: <Codesandbox className="w-4 h-4" />, condition: () => viewedProjects >= 3 },
+    { id: 'hackathon', name: 'Hackathon Master', icon: <Trophy className="w-4 h-4" />, condition: () => currentChapter === 2 },
+    { id: 'terminal', name: 'Hacker Mode', icon: <Terminal className="w-4 h-4" />, condition: () => terminalMode },
+    { id: 'all-chapters', name: 'Viajero Completo', icon: <Asterisk className="w-4 h-4" />, condition: () => completedChapters.length === chapters.length },
+  ]
+
+  useEffect(() => {
+    const newAchievements = achievements.filter(a => 
+      a.condition() && !unlockedAchievements.includes(a.id)
+    )
+    if (newAchievements.length > 0) {
+      setUnlockedAchievements([...unlockedAchievements, ...newAchievements.map(a => a.id)])
+      // Mostrar notificación del logro
+      newAchievements.forEach(ach => {
+        setShowAchievement({name: ach.name, icon: ach.icon})
+        setTimeout(() => setShowAchievement(null), 3000)
+      })
+    }
+  }, [currentChapter, viewedProjects, terminalMode, completedChapters])
+
+  // Modo terminal
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.key === '`') {
+        setTerminalMode(!terminalMode)
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [terminalMode])
+
+  // Avatar expressions
+  useEffect(() => {
+    const expressions = {
+      0: 'happy',
+      1: 'coding',
+      2: 'excited',
+      3: 'thinking',
+      4: 'smile'
+    }
+    setAvatarExpression(expressions[currentChapter] || 'default')
+  }, [currentChapter])
 
   const chapters = [
     {
@@ -194,10 +275,29 @@ export default function InteractiveDevPortfolio() {
     return () => window.removeEventListener("keydown", handleKeyPress)
   }, [currentChapter, isPlaying, chapters.length])
 
+  // Estilos según hora del día
+  const timeStyles = {
+    morning: {
+      bg: 'from-blue-900 via-blue-800 to-indigo-900',
+      text: 'text-blue-100',
+      card: 'bg-blue-900/20 border-blue-700'
+    },
+    day: {
+      bg: 'from-gray-900 via-gray-800 to-gray-900',
+      text: 'text-gray-100',
+      card: 'bg-gray-800/20 border-gray-700'
+    },
+    night: {
+      bg: 'from-gray-950 via-gray-900 to-black',
+      text: 'text-gray-300',
+      card: 'bg-gray-900/20 border-gray-800'
+    }
+  }
+
   return (
     <div
       ref={containerRef}
-      className="relative w-screen h-screen overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
+      className={`relative w-screen h-screen overflow-hidden bg-gradient-to-br ${timeStyles[timeOfDay].bg} transition-colors duration-1000 ${terminalMode ? 'terminal-mode' : ''}`}
     >
       {/* Particle effects */}
       {!isMobile &&
@@ -213,9 +313,49 @@ export default function InteractiveDevPortfolio() {
           />
         ))}
 
-      {/* Navigation */}
+      {/* Notificación de logro */}
+      {showAchievement && (
+        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-gray-800/90 backdrop-blur-md border border-gray-700 rounded-lg px-6 py-4 flex items-center gap-3 animate-fade-in-out">
+          <div className="text-yellow-400 animate-bounce">
+            {showAchievement.icon}
+          </div>
+          <div>
+            <p className="text-sm text-gray-300">Logro desbloqueado!</p>
+            <p className="font-bold text-white">{showAchievement.name}</p>
+          </div>
+        </div>
+      )}
+
+      {/* Avatar flotante */}
+      {!isMobile && (
+        <div 
+          className="fixed bottom-8 right-8 z-50 transition-all duration-500"
+          style={{
+            transform: `translateY(${Math.sin(Date.now() / 500) * 10}px)`
+          }}
+        >
+          <div className="relative group">
+            <div className="w-16 h-16 bg-gray-800 rounded-full border-2 border-blue-400 flex items-center justify-center cursor-pointer hover:border-purple-400 transition-colors">
+              {avatarExpression === 'default' && <Meh className="w-6 h-6 text-blue-400" />}
+              {avatarExpression === 'happy' && <Smile className="w-6 h-6 text-green-400" />}
+              {avatarExpression === 'coding' && <Code className="w-6 h-6 text-purple-400" />}
+              {avatarExpression === 'excited' && <Zap className="w-6 h-6 text-yellow-400" />}
+              {avatarExpression === 'thinking' && <BrainCircuit className="w-6 h-6 text-pink-400" />}
+              {avatarExpression === 'smile' && <Laugh className="w-6 h-6 text-cyan-400" />}
+            </div>
+            <div className="absolute -bottom-2 -right-2 bg-blue-500 text-white text-xs px-2 py-1 rounded-full animate-pulse">
+              {terminalMode ? 'HACKER MODE' : 'ONLINE'}
+            </div>
+            <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+              ¡Hazme clic!
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Navigation mejorada */}
       <div className="fixed top-4 md:top-8 left-1/2 transform -translate-x-1/2 z-50 px-4 w-full max-w-2xl">
-        <div className="flex items-center gap-2 md:gap-4 bg-gray-800/90 backdrop-blur-xl rounded-full px-3 md:px-6 py-2 md:py-3 border border-gray-700/50 shadow-lg">
+        <div className={`flex items-center gap-2 md:gap-4 ${timeStyles[timeOfDay].card} backdrop-blur-xl rounded-full px-3 md:px-6 py-2 md:py-3 border shadow-lg`}>
           <Button
             variant="ghost"
             size="sm"
@@ -267,21 +407,94 @@ export default function InteractiveDevPortfolio() {
         </div>
       </div>
 
-      {/* Content area with proper sizing */}
+      {/* Logros desbloqueados */}
+      {unlockedAchievements.length > 0 && (
+        <div className="fixed top-20 left-4 z-50 space-y-2">
+          {unlockedAchievements.map((id) => {
+            const achievement = achievements.find(a => a.id === id)
+            return (
+              <div 
+                key={id}
+                className="flex items-center gap-2 bg-gray-800/90 backdrop-blur-md px-3 py-2 rounded-full border border-gray-700 animate-fade-in"
+              >
+                <div className="text-yellow-400">
+                  {achievement?.icon}
+                </div>
+                <span className="text-xs text-white">{achievement?.name}</span>
+              </div>
+            )
+          })}
+        </div>
+      )}
+
+      {/* Modo Terminal */}
+      {terminalMode && (
+        <div className="absolute inset-0 bg-black/90 z-40 p-8 font-mono text-green-400 overflow-auto">
+          <div className="max-w-3xl mx-auto">
+            <div className="mb-4">
+              <p className="text-green-400">$ irwing-portfolio --help</p>
+              <p className="text-gray-400 ml-4">Bienvenido al modo terminal</p>
+              <p className="text-gray-400 ml-4">Comandos disponibles:</p>
+              <p className="text-gray-400 ml-6">--skills: Muestra mis habilidades</p>
+              <p className="text-gray-400 ml-6">--projects: Lista mis proyectos</p>
+              <p className="text-gray-400 ml-6">--contact: Información de contacto</p>
+              <p className="text-gray-400 ml-6">exit: Salir del modo terminal</p>
+            </div>
+            
+            <div className="mb-4">
+              <p className="text-green-400">$ irwing --skills</p>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2 ml-4">
+                {['JavaScript', 'TypeScript', 'React', 'Next.js', 'Node.js', 'Solidity', 'Blockchain', 'Web3', 'TailwindCSS', 'PostgreSQL'].map(skill => (
+                  <span key={skill} className="text-gray-300">▹ {skill}</span>
+                ))}
+              </div>
+            </div>
+            
+            <div className="mb-4">
+              <p className="text-green-400">$ irwing --contact</p>
+              <div className="ml-4 space-y-1">
+                <p className="text-gray-300">▹ Email: contacto@irwingduran.com</p>
+                <p className="text-gray-300">▹ GitHub: github.com/irwingduran</p>
+                <p className="text-gray-300">▹ LinkedIn: linkedin.com/in/irwingduran</p>
+              </div>
+            </div>
+            
+            <div className="mb-4">
+              <p className="text-green-400">$ irwing --projects --count=3</p>
+              <div className="ml-4 space-y-2">
+                {[
+                  "Plataforma de Voto Digital en Blockchain",
+                  "Sistema de Reservas Médicas",
+                  "Eco-Marketplace Inteligente"
+                ].map((proj, i) => (
+                  <p key={i} className="text-gray-300">▹ [{i+1}] {proj}</p>
+                ))}
+              </div>
+            </div>
+            
+            <div className="flex items-center">
+              <p className="text-green-400">$ _</p>
+              <div className="ml-2 h-5 w-3 bg-green-400 animate-blink"></div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Content area */}
       <div className="absolute inset-0 pt-20 pb-16 overflow-y-auto">
         {chapters.map((chapter, index) => (
           <div
             key={chapter.id}
-            className={`absolute inset-0 transition-opacity duration-1000 flex items-center justify-center ${
+            className={`absolute inset-0 transition-opacity duration-1000 flex items-center justify-center ${timeStyles[timeOfDay].text} ${
               index === currentChapter ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
             }`}
           >
             <div className="w-full h-full overflow-y-auto px-4">
-              {index === 0 && <WelcomeChapter chapter={chapter} />}
-              {index === 1 && <ProjectsChapter chapter={chapter} />}
-              {index === 2 && <HackathonsChapter chapter={chapter} />}
-              {index === 3 && <AboutMeChapter chapter={chapter} />}
-              {index === 4 && <ContactChapter chapter={chapter} />}
+              {index === 0 && <WelcomeChapter chapter={chapter} timeOfDay={timeOfDay} />}
+              {index === 1 && <ProjectsChapter chapter={chapter} setViewedProjects={setViewedProjects} timeOfDay={timeOfDay} />}
+              {index === 2 && <HackathonsChapter chapter={chapter} timeOfDay={timeOfDay} />}
+              {index === 3 && <AboutMeChapter chapter={chapter} timeOfDay={timeOfDay} />}
+              {index === 4 && <ContactChapter chapter={chapter} timeOfDay={timeOfDay} />}
             </div>
           </div>
         ))}
@@ -291,7 +504,7 @@ export default function InteractiveDevPortfolio() {
       <div className="fixed bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 z-40 px-4 w-full max-w-md">
         <div className="text-center text-gray-400 text-xs md:text-sm">
           <p className="hidden md:block">
-            Usa las flechas ← → o teclas numéricas (1-5) • Espacio para pausar/reanudar
+            Usa las flechas ← → o teclas numéricas (1-5) • Espacio para pausar/reanudar • Ctrl+` para terminal
           </p>
           <p className="md:hidden">Toca los puntos para navegar • Botón central para auto-play</p>
         </div>
@@ -305,14 +518,28 @@ export default function InteractiveDevPortfolio() {
   )
 }
 
-function WelcomeChapter({ chapter }: { chapter: any }) {
+function WelcomeChapter({ chapter, timeOfDay }: { chapter: any, timeOfDay: string }) {
+  const [hoverEffect, setHoverEffect] = useState(false)
+  const [showWorkflow, setShowWorkflow] = useState(false)
+  
+  const timeColors = {
+    morning: 'from-blue-400 to-cyan-400',
+    day: 'from-blue-500 to-indigo-500',
+    night: 'from-indigo-600 to-purple-600'
+  }
+  
   return (
     <div className="h-full flex flex-col justify-center items-center text-center px-4 py-8">
-      <div className={`inline-flex p-4 md:p-6 rounded-full bg-gradient-to-r ${chapter.color} mb-6 md:mb-8 animate-float`}>
-        {chapter.icon}
+      <div 
+        className={`inline-flex p-4 md:p-6 rounded-full bg-gradient-to-r ${chapter.color} mb-6 md:mb-8 animate-float hover:scale-110 transition-transform duration-300 cursor-pointer`}
+        onMouseEnter={() => setHoverEffect(true)}
+        onMouseLeave={() => setHoverEffect(false)}
+        onClick={() => setShowWorkflow(!showWorkflow)}
+      >
+        {hoverEffect ? <Zap className="w-8 h-8 md:w-12 md:h-12 animate-pulse" /> : chapter.icon}
       </div>
       <h1 className="font-bold text-3xl md:text-5xl lg:text-6xl mb-4 md:mb-6">
-        <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+        <span className={`bg-gradient-to-r ${timeColors[timeOfDay]} bg-clip-text text-transparent`}>
           {chapter.title}
         </span>
       </h1>
@@ -323,69 +550,144 @@ function WelcomeChapter({ chapter }: { chapter: any }) {
         {chapter.description}
       </p>
       
-      <div className="mt-8 md:mt-12 flex justify-center gap-4">
-        <Button onClick={() => window.open("https://wa.me/5212229097515", "_blank")} className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 cursor-pointer">
+      <div className="mt-8 md:mt-12 flex flex-col sm:flex-row justify-center gap-4">
+        <Button 
+          onClick={() => window.open("https://wa.me/5212229097515", "_blank")} 
+          className={`bg-gradient-to-r ${timeColors[timeOfDay]} hover:opacity-90 cursor-pointer transition-all hover:shadow-lg`}
+        >
           Contactarme ahora
         </Button>
+        <Button 
+          variant="outline" 
+          className="border-gray-600 hover:bg-gray-800/50 text-gray-300 transition-all hover:shadow-lg"
+          onClick={() => setShowWorkflow(!showWorkflow)}
+        >
+          <GitBranch className="mr-2 w-4 h-4" />
+          {showWorkflow ? 'Ocultar flujo' : 'Ver mi flujo de trabajo'}
+        </Button>
+      </div>
+      
+      {/* Flujo de trabajo interactivo */}
+      {showWorkflow && (
+        <div className="mt-8 bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 max-w-2xl w-full border border-gray-700">
+          <h3 className="text-lg font-semibold text-white mb-4">Mi Proceso de Desarrollo</h3>
+          <div className="space-y-4">
+            {[
+              {icon: <Puzzle className="w-5 h-5 text-blue-400" />, title: "Análisis de Requerimientos", description: "Entiendo profundamente el problema a resolver"},
+              {icon: <GitCommit className="w-5 h-5 text-purple-400" />, title: "Planificación", description: "Divido el proyecto en tareas manejables"},
+              {icon: <Code className="w-5 h-5 text-green-400" />, title: "Implementación", description: "Desarrollo iterativo con feedback constante"},
+              {icon: <Shield className="w-5 h-5 text-yellow-400" />, title: "Pruebas", description: "Aseguro calidad con testing automatizado"},
+              {icon: <Sparkles className="w-5 h-5 text-pink-400" />, title: "Despliegue", description: "Implementación y monitoreo continuo"}
+            ].map((step, i) => (
+              <div key={i} className="flex items-start gap-4">
+                <div className="p-2 bg-gray-700/50 rounded-full">
+                  {step.icon}
+                </div>
+                <div>
+                  <h4 className="font-medium text-white">{step.title}</h4>
+                  <p className="text-sm text-gray-400">{step.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+      
+      {/* Sección de habilidades como planetas */}
+      <div className="mt-12 grid grid-cols-3 md:grid-cols-7 gap-4">
+        {['React', 'Next', 'Node', 'Web3', 'Solidity', 'Tailwind', 'TypeScript'].map((tech, i) => (
+          <div 
+            key={tech}
+            className="flex flex-col items-center group"
+          >
+            <div 
+              className={`w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center text-lg md:text-xl font-mono border-2 ${
+                i % 2 === 0 ? 'border-blue-400' : 'border-purple-400'
+              } mb-2 transition-all duration-500 group-hover:rotate-12 group-hover:scale-110`}
+              style={{
+                transform: `rotate(${i * 10}deg) translateY(${Math.sin(i) * 5}px)`
+              }}
+            >
+              {tech[0]}
+            </div>
+            <span className="text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity">
+              {tech}
+            </span>
+          </div>
+        ))}
       </div>
     </div>
   )
 }
 
-function ProjectsChapter({ chapter }: { chapter: any }) {
+function ProjectsChapter({ chapter, setViewedProjects, timeOfDay }: { chapter: any, setViewedProjects: any, timeOfDay: string }) {
   const projects = [
-  {
-    title: "Plataforma de Voto Digital en Blockchain",
-    description: "Sistema descentralizado para elecciones digitales seguras, usando contratos inteligentes y verificaciones públicas.",
-    tech: ["Solidity", "Ethereum", "React", "Node.js"],
-    status: "Prototipo funcional",
-    year: "2022",
-    github: "#",
-    demo: "#",
-    icon: <Lock className="w-5 h-5 text-purple-400" />
-  },
-  {
-    title: "Sistema de Reservas Médicas",
-    description: "Plataforma web para gestionar citas y disponibilidad de doctores, con integración de APIs de calendario.",
-    tech: ["Next.js", "TypeScript", "TailwindCSS", "MongoDB"],
-    status: "Producción",
-    year: "2023",
-    github: "#",
-    demo: "#",
-    icon: <Calendar className="w-5 h-5 text-green-400" />
-  },
-  {
-    title: "Eco-Marketplace Inteligente",
-    description: "Marketplace sostenible con integración de pagos digitales y analíticas en tiempo real para vendedores.",
-    tech: ["React", "Node.js", "PostgreSQL", "Stripe API"],
-    status: "Activo",
-    year: "2023",
-    github: "#",
-    demo: "#",
-    icon: <ShoppingBag className="w-5 h-5 text-blue-400" />
-  },
-  {
-    title: "Aplicación Web3 de Microcréditos",
-    description: "DApp que permite a usuarios solicitar y otorgar microcréditos con bajas tasas de interés usando Web3.",
-    tech: ["Solidity", "Next.js", "Ethers.js", "IPFS"],
-    status: "Prototipo",
-    year: "2024",
-    github: "#",
-    demo: "#",
-    icon: <Sparkles className="w-5 h-5 text-yellow-400" />
-  },
-  {
-    title: "Sistema de Reportes Gantt",
-    description: "Aplicación para generar reportes de avance quincenales en Excel a partir de diagramas de Gantt.",
-    tech: ["Python", "Pandas", "OpenPyXL", "React"],
-    status: "Uso interno",
-    year: "2024",
-    github: "#",
-    demo: "#",
-    icon: <BarChart className="w-5 h-5 text-red-400" />
-  }
-]
+    {
+      title: "Plataforma de Voto Digital en Blockchain",
+      description: "Sistema descentralizado para elecciones digitales seguras, usando contratos inteligentes y verificaciones públicas.",
+      tech: ["Solidity", "Ethereum", "React", "Node.js"],
+      status: "Prototipo funcional",
+      year: "2022",
+      github: "#",
+      demo: "#",
+      icon: <Lock className="w-5 h-5 text-purple-400" />,
+      featured: true
+    },
+    {
+      title: "Sistema de Reservas Médicas",
+      description: "Plataforma web para gestionar citas y disponibilidad de doctores, con integración de APIs de calendario.",
+      tech: ["Next.js", "TypeScript", "TailwindCSS", "MongoDB"],
+      status: "Producción",
+      year: "2023",
+      github: "#",
+      demo: "#",
+      icon: <Calendar className="w-5 h-5 text-green-400" />,
+      featured: true
+    },
+    {
+      title: "Eco-Marketplace Inteligente",
+      description: "Marketplace sostenible con integración de pagos digitales y analíticas en tiempo real para vendedores.",
+      tech: ["React", "Node.js", "PostgreSQL", "Stripe API"],
+      status: "Activo",
+      year: "2023",
+      github: "#",
+      demo: "#",
+      icon: <ShoppingBag className="w-5 h-5 text-blue-400" />,
+      featured: true
+    },
+    {
+      title: "Aplicación Web3 de Microcréditos",
+      description: "DApp que permite a usuarios solicitar y otorgar microcréditos con bajas tasas de interés usando Web3.",
+      tech: ["Solidity", "Next.js", "Ethers.js", "IPFS"],
+      status: "Prototipo",
+      year: "2024",
+      github: "#",
+      demo: "#",
+      icon: <Sparkles className="w-5 h-5 text-yellow-400" />,
+      featured: false
+    },
+    {
+      title: "Sistema de Reportes Gantt",
+      description: "Aplicación para generar reportes de avance quincenales en Excel a partir de diagramas de Gantt.",
+      tech: ["Python", "Pandas", "OpenPyXL", "React"],
+      status: "Uso interno",
+      year: "2024",
+      github: "#",
+      demo: "#",
+      icon: <BarChart className="w-5 h-5 text-red-400" />,
+      featured: false
+    }
+  ]
 
+  useEffect(() => {
+    setViewedProjects(projects.length)
+  }, [])
+
+  const timeCardStyles = {
+    morning: 'bg-blue-900/20 border-blue-700',
+    day: 'bg-gray-800/20 border-gray-700',
+    night: 'bg-gray-900/20 border-gray-800'
+  }
 
   return (
     <div className="h-full flex flex-col items-center pt-28 px-4 py-8 overflow-y-auto">
@@ -401,11 +703,20 @@ function ProjectsChapter({ chapter }: { chapter: any }) {
         {projects.map((project, index) => (
           <Card
             key={index}
-            className="bg-gray-800/80 backdrop-blur-md border-gray-700 hover:border-gray-600 transition-all hover:shadow-xl hover:-translate-y-1 h-full"
+            className={`${timeCardStyles[timeOfDay]} backdrop-blur-md hover:border-gray-600 transition-all hover:shadow-xl hover:-translate-y-1 h-full relative ${
+              project.featured ? 'featured-project' : ''
+            }`}
             style={{ 
               borderLeft: `4px solid ${index === 0 ? '#60a5fa' : index === 1 ? '#34d399' : '#a78bfa'}` 
             }}
+            onMouseEnter={() => project.featured && setViewedProjects(prev => prev + 1)}
           >
+            {project.featured && (
+              <div className="absolute -top-2 -right-2 bg-yellow-500 text-yellow-900 text-xs font-bold px-2 py-1 rounded-full flex items-center">
+                <Award className="w-3 h-3 mr-1" />
+                Destacado
+              </div>
+            )}
             <CardHeader className="pb-3">
               <div className="flex justify-between items-start mb-2 gap-2">
                 <Badge variant="outline" className="border-gray-600 bg-gray-700/50 text-gray-300">
